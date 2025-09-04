@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+   (function(){
+       emailjs.init("7pxT6DXG6sPRhhuAn"); // الـ Public Key بتاعك
+   })();
+</script>
+  <title>سوبر ماركت</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <button id="backbtn" onclick="goToPage2()"> الرجوع</button>
+  <h1 id="h1">الدفع</h1>
+<p id="p">المبلغ: <span id="amount">0</span></p>
+<form id="contact-form">
+  <label for="name">الأسم :</label><br>
+  <input type="text" id="name" name="name" placeholder="اسمك ثلاثي ..." required><br><br>
+  <label for="email">الإيميل :</label><br>
+  <input type="email" id="email" name="email" placeholder="إيميلك ..." required><br><br>
+  <label for="number">رقم الهاتف :</label><br>
+  <input type="number" id="phone" name="phone" placeholder="رقم هاتفك ..." required><br><br>
+  <label for="message">العنوان :</label><br>
+  <textarea name="message"  
+  id="message"
+  placeholder="عنوانك ..." required></textarea><br><br>
+  <label for="items">المنتجات المطلوبة :</label><br>
+  <input type="text" id="items" name="items" readonly required><br><br />
+  <label for="price">السعر</label>
+  <input type="text" id="price" name="price" readonly required><br>
+<input type="radio" class="cash" name="payType" required>
+<label for="cash">نقد</label><br>
+<button type="submit" id="submit">ابعت</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // جلب المبلغ من sessionStorage
+  const amount = sessionStorage.getItem("paymentAmount");
+  const amountElem = document.getElementById("amount");
+  const priceInput = document.getElementById("price");
+
+  if (amountElem && priceInput) {
+    if (amount) {
+      amountElem.textContent = amount + " جنيه";
+      priceInput.value = amount + " جنيه";
+    } else {
+      amountElem.textContent = "لم يتم تحديد المبلغ";
+      priceInput.value = "";
+    }
+  }
+
+  // جلب أسماء المنتجات من sessionStorage
+  const items = JSON.parse(sessionStorage.getItem("paymentItems") || "[]");
+  const itemsInput = document.getElementById("items");
+
+  if (itemsInput) {
+    if (items.length > 0) {
+      // تحويل المصفوفة لنص مفصول بفواصل
+      itemsInput.value = items.join(", ");
+    } else {
+      itemsInput.value = "لم يتم تحديد المنتجات";
+    }
+  }
+});
+</script>
+<script src="payment2.js"></script>
+</body>
+
+</html>

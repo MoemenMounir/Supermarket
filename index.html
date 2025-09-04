@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>سوبر ماركت</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>سوبر ماركت</h1>
+    <input type="text" id="search" placeholder="ابحث عن منتج...">
+    <button id="cart-btn">🛒 (<span id="cart-count">0</span>)</button>
+  </header>
+
+  <main id="products-container"></main>
+
+  <!-- تفاصيل المنتج -->
+  <section id="product-details" class="hidden">
+    <button id="cart-btn2">اذهب للعربة </button>
+  </section>
+
+<!-- عربة التسوق (Sidebar) -->
+<div id="cart" class="cart-hidden">
+  <div class="cart-header">
+    <h2>عربة التسوق</h2>
+    <button onclick="closeCart()">✖</button>
+  </div>
+  <ul id="cart-items"></ul>
+  <div id="cart-footer">
+    <p>المجموع: <span id="cart-total">0</span> جنيه</p>
+    <button onclick="goToPage()" id="checkout-btn">اذهب للدفع</button>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
